@@ -57,6 +57,7 @@ final class MovieQuizViewController: UIViewController {
         show(quiz: viewModel)
     }
     
+    
     @IBOutlet private var imageView: UIImageView!
     @IBOutlet private var textLabel: UILabel!
     @IBOutlet private var counterLabel: UILabel!
