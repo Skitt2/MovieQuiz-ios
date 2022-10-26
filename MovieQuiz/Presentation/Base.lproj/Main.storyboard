@@ -26,7 +26,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="f0f-C0-4Ae">
-                                <rect key="frame" x="20" y="54" width="350" height="796.66666666666663"/>
+                                <rect key="frame" x="20" y="44" width="350" height="766"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uk3-va-VNd">
                                         <rect key="frame" x="0.0" y="0.0" width="350" height="23.666666666666668"/>
@@ -55,10 +55,10 @@
                                         </constraints>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a1T-N1-Zcf">
-                                        <rect key="frame" x="0.0" y="588.66666666666663" width="350" height="128"/>
+                                        <rect key="frame" x="0.0" y="588.66666666666663" width="350" height="97.333333333333371"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Рейтинг этого фильма меньше, чем 5?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fCI-m5-ypV" userLabel="Question Label">
-                                                <rect key="frame" x="20" y="5" width="310" height="118"/>
+                                                <rect key="frame" x="20" y="5" width="310" height="87.333333333333329"/>
                                                 <color key="tintColor" name="YP White (iOS)"/>
                                                 <fontDescription key="fontDescription" name="YSDisplay-Bold" family="YS Display" pointSize="23"/>
                                                 <color key="textColor" name="YP White (iOS)"/>
@@ -73,7 +73,7 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ugh-XQ-rqZ">
-                                        <rect key="frame" x="0.0" y="736.66666666666663" width="350" height="60"/>
+                                        <rect key="frame" x="0.0" y="706" width="350" height="60"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sYJ-2D-eyQ" userLabel="No button">
                                                 <rect key="frame" x="0.0" y="0.0" width="165" height="60"/>
@@ -124,7 +124,8 @@
                         <constraints>
                             <constraint firstItem="f0f-C0-4Ae" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="3ao-gS-p9Q"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="f0f-C0-4Ae" secondAttribute="trailing" constant="20" id="EcI-tJ-0Aj"/>
-                            <constraint firstItem="f0f-C0-4Ae" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="oIK-NP-NIf"/>
+                            <constraint firstItem="f0f-C0-4Ae" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="jRX-iC-vwc"/>
+                            <constraint firstItem="f0f-C0-4Ae" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="oIK-NP-NIf"/>
                         </constraints>
                     </view>
                     <connections>
