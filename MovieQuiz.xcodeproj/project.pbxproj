@@ -18,6 +18,8 @@
 		AD7AFA552836189F00399704 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7AFA542836189F00399704 /* Array+Extensions.swift */; };
 		F90B8E732920DE820012ADF5 /* GameRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90B8E722920DE820012ADF5 /* GameRecord.swift */; };
 		F90B8E752920DF180012ADF5 /* StatisticServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90B8E742920DF180012ADF5 /* StatisticServiceProtocol.swift */; };
+		F90B8E782921096F0012ADF5 /* YS Display-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9299CEF28EF359600ABDCC7 /* YS Display-Medium.ttf */; };
+		F90B8E79292109730012ADF5 /* YS Display-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9299CF028EF35A600ABDCC7 /* YS Display-Bold.ttf */; };
 		F9250FC629101FB7003662C2 /* StatisticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9250FC529101FB7003662C2 /* StatisticService.swift */; };
 		F926702329084A8600C8322B /* QuestionFactoryDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F926702229084A8600C8322B /* QuestionFactoryDelegate.swift */; };
 		F945B6BF29030E0D00CCBBE4 /* QuestionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F945B6BE29030E0D00CCBBE4 /* QuestionFactory.swift */; };
@@ -214,6 +216,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD1ABABE2831907F00B3E448 /* LaunchScreen.storyboard in Resources */,
+				F90B8E782921096F0012ADF5 /* YS Display-Medium.ttf in Resources */,
+				F90B8E79292109730012ADF5 /* YS Display-Bold.ttf in Resources */,
 				AD1ABABB2831907F00B3E448 /* Assets.xcassets in Resources */,
 				AD1ABAB92831907B00B3E448 /* Main.storyboard in Resources */,
 			);
