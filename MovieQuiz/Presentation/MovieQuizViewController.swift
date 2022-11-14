@@ -9,6 +9,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     private var currentQuestion: QuizQuestion?
     private var alertPresenter: AlertPresenter?
     private var statisticService: StatisticServiceProtocol?
+    private let moviesLoader: MoviesLoading = MoviesLoader()
 
     
     // MARK: - Lifecycle
@@ -16,31 +17,22 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         super.viewDidLoad()
         
         imageView.layer.cornerRadius = 20
-        questionFactory = QuestionFactory(delegate: self)
-        questionFactory?.requestNextQuestion()
-        statisticService = StatisticServiceImplementation()
-        alertPresenter = AlertPresenter(delegate: self)
         
+         questionFactory = QuestionFactory(moviesLoader: MoviesLoader(), delegate: self)
+         statisticService = StatisticServiceImplementation()
+        
+//        alertPresenter = AlertPresenter(delegate: self)
+        questionFactory?.loadData()
+         showLoadingIndicator()
     }
     
     // MARK: - QuestionFactoryDelegate
     
-    func didRecieveNextQuestion(question: QuizQuestion?) {
-        guard let question = question else {
-                return
-            }
-            
-            currentQuestion = question
-            let viewModel = convert(model: question)
-            DispatchQueue.main.async { [weak self] in
-                self?.show(quiz: viewModel)
-            }
-    }
+
     
     @IBOutlet private var imageView: UIImageView!
     @IBOutlet private var textLabel: UILabel!
     @IBOutlet private var counterLabel: UILabel!
-    
     
     @IBAction private func noButtonClicked(_ sender: UIButton) {
         guard let currentQuestion = currentQuestion else {
@@ -56,6 +48,50 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         }
         let givenAnswer = true
         showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
+    }
+    @IBOutlet private var activityIndicator: UIActivityIndicatorView!
+    
+    func didRecieveNextQuestion(question: QuizQuestion?) {
+        guard let question = question else {
+                return
+            }
+            
+            currentQuestion = question
+            let viewModel = convert(model: question)
+            DispatchQueue.main.async { [weak self] in
+                self?.show(quiz: viewModel)
+            }
+    }
+    
+    func didLoadDataFromServer() {
+        activityIndicator.isHidden = true // скрываем индикатор загрузки
+        questionFactory?.requestNextQuestion()
+    }
+    
+    func didFailToLoadData(with error: Error) {
+        showNetworkError(message: error.localizedDescription) // возьмём в качестве сообщения описание ошибки
+    }
+    
+    private func showLoadingIndicator() {
+        activityIndicator.startAnimating()
+    }
+    
+    private func hideLoadingIndicator() {
+        activityIndicator.stopAnimating()
+    }
+    
+    private func showNetworkError(message: String) {
+        hideLoadingIndicator()
+        
+        let alertModel = AlertModel(title: "Что-то пошло не так(",
+                                    message: message,
+                                    buttonText: "Попробовать еще раз") { [weak self] _ in
+            guard let self = self else { return }
+            self.questionFactory?.loadData()
+            self.showLoadingIndicator()
+        }
+        
+        alertPresenter?.showAlert(alertModel: alertModel)
     }
     
     private func show(quiz step: QuizStepViewModel) {
@@ -83,8 +119,8 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     
     
     private func convert(model: QuizQuestion) -> QuizStepViewModel {
-        QuizStepViewModel(
-            image: UIImage(named: model.image) ?? UIImage(), // распаковываем картинку
+        return QuizStepViewModel(
+            image: UIImage(data: model.image) ?? UIImage(), // распаковываем картинку
             question: model.text, // берём текст вопроса
             questionNumber: "\(currentQuestionIndex+1)/\(questionsAmount)") // высчитываем номер вопроса
     }
