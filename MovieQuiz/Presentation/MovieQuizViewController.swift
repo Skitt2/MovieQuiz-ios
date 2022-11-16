@@ -2,9 +2,8 @@ import UIKit
 
 final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     
-//    private var currentQuestionIndex: Int = 0
     private var correctAnswers: Int = 0
-//    private let questionsAmount: Int = 10
+
     private var questionFactory: QuestionFactoryProtocol?
     private var currentQuestion: QuizQuestion?
     private var alertPresenter: AlertPresenter?
@@ -26,6 +25,8 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         alertPresenter = AlertPresenter(delegate: self)
         questionFactory?.loadData()
          showLoadingIndicator()
+        
+        presenter.viewController = self
     }
     
     // MARK: - QuestionFactoryDelegate
@@ -36,21 +37,30 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     @IBOutlet private var textLabel: UILabel!
     @IBOutlet private var counterLabel: UILabel!
     
-    @IBAction private func noButtonClicked(_ sender: UIButton) {
-        guard let currentQuestion = currentQuestion else {
-            return
-        }
-        let givenAnswer = false
-        showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
-    }
-    
     @IBAction private func yesButtonClicked(_ sender: UIButton) {
-        guard let currentQuestion = currentQuestion else {
-            return
-        }
-        let givenAnswer = true
-        showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
+        presenter.currentQuestion = currentQuestion
+        presenter.yesButtonClicked()
     }
+    @IBAction private func noButtonClicked(_ sender: UIButton) {
+        presenter.currentQuestion = currentQuestion
+        presenter.noButtonClicked()
+    }
+//    @IBAction private func noButtonClicked(_ sender: UIButton) {
+//        guard let currentQuestion = currentQuestion else {
+//            return
+//        }
+//        let givenAnswer = false
+//        showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
+//    }
+    
+//    @IBAction private func yesButtonClicked(_ sender: UIButton) {
+//        guard let currentQuestion = currentQuestion else {
+//            return
+//        }
+//        let givenAnswer = true
+//        showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
+//    }
+
     @IBOutlet private var activityIndicator: UIActivityIndicatorView!
     
     func didReceiveNextQuestion(question: QuizQuestion?) {
@@ -119,15 +129,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
 
     }
     
-    
-//    private func convert(model: QuizQuestion) -> QuizStepViewModel {
-//        return QuizStepViewModel(
-//            image: UIImage(data: model.image) ?? UIImage(), // распаковываем картинку
-//            question: model.text, // берём текст вопроса
-//            questionNumber: "\(currentQuestionIndex+1)/\(questionsAmount)") // высчитываем номер вопроса
-//    }
-    
-    private func showAnswerResult(isCorrect: Bool) {
+    func showAnswerResult(isCorrect: Bool) {
         if isCorrect {
             correctAnswers += 1
         }
