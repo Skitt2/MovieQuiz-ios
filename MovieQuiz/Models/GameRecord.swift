@@ -9,4 +9,3 @@ struct GameRecord: Codable, Comparable {
     var total: Int
     var date: Date
 }
-
