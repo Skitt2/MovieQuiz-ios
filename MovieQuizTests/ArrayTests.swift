@@ -1,6 +1,5 @@
 import Foundation
 import XCTest
-
 @testable import MovieQuiz
 
 class ArrayTests: XCTestCase {
@@ -14,17 +13,17 @@ class ArrayTests: XCTestCase {
         // Then
         XCTAssertNotNil(value)
         XCTAssertEqual(value, 2)
+        
     }
     
-    func testGetValueOutOfRange() throws {
-        // given
+    func testGetValueOutRange() throws {
+        // Given
         let array = [1, 1, 2, 3, 5]
         
-        // when
+        // When
         let value = array[safe: 20]
         
-        // then
+        // Then
         XCTAssertNil(value)
-        
     }
 }

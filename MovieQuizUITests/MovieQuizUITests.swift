@@ -1,7 +1,6 @@
 import XCTest
 
 class MovieQuizUITests: XCTestCase {
-    
     var app: XCUIApplication!
 
     override func setUpWithError() throws {
@@ -9,22 +8,14 @@ class MovieQuizUITests: XCTestCase {
         
         app = XCUIApplication()
         app.launch()
+        
         continueAfterFailure = false
     }
 
     override func tearDownWithError() throws {
         try super.tearDownWithError()
-
         app.terminate()
         app = nil
-    }
-
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
     
     func testYesButton() {
@@ -40,7 +31,7 @@ class MovieQuizUITests: XCTestCase {
         XCTAssertTrue(indexLabel.label == "2/10")
         XCTAssertFalse(firstPoster == secondPoster)
     }
-
+    
     func testNoButton() {
         let firstPoster = app.images["Poster"]
         
@@ -59,12 +50,12 @@ class MovieQuizUITests: XCTestCase {
         for _ in 1...10 {
             app.buttons["No"].tap()
         }
-        
+
         sleep(2)
-        
-        let alert = app.alerts["Game results"]
-        
-        XCTAssertTrue(app.alerts["Game results"].exists)
+
+        let alert = app.alerts["Этот раунд окончен!"]
+
+        XCTAssertTrue(app.alerts["Этот раунд окончен!"].exists)
         XCTAssertTrue(alert.label == "Этот раунд окончен!")
         XCTAssertTrue(alert.buttons.firstMatch.label == "Сыграть ещё раз")
     }
@@ -76,15 +67,14 @@ class MovieQuizUITests: XCTestCase {
         
         sleep(2)
         
-        let alert = app.alerts["Game results"]
+        let alert = app.alerts["Этот раунд окончен!"]
         alert.buttons.firstMatch.tap()
         
         sleep(2)
         
         let indexLabel = app.staticTexts["Index"]
         
-        XCTAssertFalse(app.alerts["Game results"].exists)
+        XCTAssertFalse(app.alerts["Этот раунд окончен!"].exists)
         XCTAssertTrue(indexLabel.label == "1/10")
     }
-    
 }
