@@ -103,5 +103,3 @@ class QuestionFactory: QuestionFactoryProtocol {
 //                text: "Рейтинг этого фильма больше чем 6?",
 //                correctAnswer: false)
 //        ]
-    
-

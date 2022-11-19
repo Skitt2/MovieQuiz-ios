@@ -8,7 +8,6 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
     
     private var presenter: MovieQuizPresenter!
 
-    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
